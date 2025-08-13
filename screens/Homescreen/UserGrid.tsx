@@ -7,7 +7,7 @@ interface UserGridProps {
   users: User[];
 }
 
-export const UserGrid = async({ users }: UserGridProps) => {
+export const UserGrid = ({ users }: UserGridProps) => {
   return (
     <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
       <View style={styles.userGrid}>

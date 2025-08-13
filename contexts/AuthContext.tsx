@@ -8,7 +8,8 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     // Initialize auth when provider mounts
-    initializeAuth().then(r => {})
+    // TODO: Handle errors or loading state if needed
+    initializeAuth();
   }, [])
 
   return <>{children}</>
