@@ -15,7 +15,6 @@ import {supabase} from "../../lib/supabase";
 import {useUserProfile} from "../../hooks/queries";
 
 export const ProfileScreen = () => {
-  // TODO: 프로필 정보 가져오기
   const { profile, loading, updateProfile, displayName, avatarUrl } = useUserProfile();
 
   const [hasRequestedLaunch, setHasRequestedLaunch] = React.useState(false);
@@ -57,15 +56,23 @@ export const ProfileScreen = () => {
       <View style={styles.profileSection}>
         <View style={styles.profileImageContainer}>
           <Image
-            source={require("../../assets/profiles/man-profile2.jpg")}
+            source={
+              avatarUrl 
+                ? { uri: avatarUrl } 
+                : require("../../assets/profiles/man-profile2.jpg")
+            }
             style={styles.profileImage}
           />
           <TouchableOpacity style={styles.editButton}>
             <Icon name='edit' size={16} color='#666' />
           </TouchableOpacity>
         </View>
-        <Text style={styles.profileName}>{displayName} 29</Text>
-        <Text style={styles.profileLocation}>서울, 강남구</Text>
+        <Text style={styles.profileName}>
+          {displayName} {profile?.age}
+        </Text>
+        <Text style={styles.profileLocation}>
+          {profile?.city || '위치 정보 없음'}
+        </Text>
       </View>
 
       <View style={styles.interestSection}>

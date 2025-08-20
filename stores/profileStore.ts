@@ -2,9 +2,9 @@ import React from 'react'
 import { create } from 'zustand'
 import { supabase } from '../lib/supabase'
 import { useAuthStore } from './authStore'
-import type { Database } from '../lib/database.types'
+import type { Tables } from '../supabase'
 
-export type Profile = Database['public']['Tables']['profiles']['Row']
+export type Profile = Tables<'profiles'>
 
 interface ProfileStore {
   profiles: Record<string, Profile | null> // userId -> profile
@@ -133,7 +133,7 @@ export const useUserProfile = () => {
     error,
     updateProfile: handleUpdateProfile,
     user,
-    displayName: profile?.username || user?.email?.split('@')[0] || 'User',
+    displayName: profile?.first_name || user?.email?.split('@')[0] || 'Unknown',
     avatarUrl: profile?.avatar_url,
   }
 }

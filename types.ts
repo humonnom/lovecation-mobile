@@ -1,10 +1,5 @@
-export interface User {
-  id: number;
-  name: string;
-  age: number;
-  gender: "female" | "male";
-  city: string;
-  image: any;
-  isLiked: boolean;
-  isOnline?: boolean;
-}
+import { Tables, Database } from './supabase';
+
+export type Profile = Tables<'profiles'>;
+
+export type AuthUser = Database['auth']['Tables']['users']['Row'];
