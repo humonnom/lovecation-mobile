@@ -724,7 +724,7 @@ export type Database = {
       profiles: {
         Row: {
           age: number | null
-          avatar_url: string | null
+          avatar_url: string
           city: string | null
           description: string | null
           first_name: string | null
@@ -732,14 +732,14 @@ export type Database = {
           id: string
           is_online: boolean | null
           last_name: string | null
-          name_reading: string | null
+          name_reading: string
           nationality: string | null
           nickname: string
           updated_at: string | null
         }
         Insert: {
           age?: number | null
-          avatar_url?: string | null
+          avatar_url: string
           city?: string | null
           description?: string | null
           first_name?: string | null
@@ -747,14 +747,14 @@ export type Database = {
           id: string
           is_online?: boolean | null
           last_name?: string | null
-          name_reading?: string | null
+          name_reading: string
           nationality?: string | null
           nickname: string
           updated_at?: string | null
         }
         Update: {
           age?: number | null
-          avatar_url?: string | null
+          avatar_url?: string
           city?: string | null
           description?: string | null
           first_name?: string | null
@@ -762,7 +762,7 @@ export type Database = {
           id?: string
           is_online?: boolean | null
           last_name?: string | null
-          name_reading?: string | null
+          name_reading?: string
           nationality?: string | null
           nickname?: string
           updated_at?: string | null

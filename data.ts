@@ -10,7 +10,7 @@ export const mockProfiles: Profile[] = [
     age: 25,
     gender: "female",
     city: "Tokyo",
-    avatar_url: require("./assets/profiles/profile1.jpg"),
+    avatar_url: "https://images.unsplash.com/photo-1494790108755-2616b612b742?w=400&h=400&fit=crop&crop=face",
     description: "こんにちは！よろしくお願いします。",
     nationality: "JP",
     is_online: true,

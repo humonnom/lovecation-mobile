@@ -30,7 +30,11 @@ export const UserCard = ({ user, onLikeToggle }: UserCardProps) => {
         onPress={handleCardPress}
       >
         <Image
-          source={user.avatar_url || require("../../assets/profiles/profile1.jpg")}
+          source={
+            user.avatar_url.startsWith('http') 
+              ? { uri: user.avatar_url } 
+              : require("../../assets/profiles/profile1.jpg")
+          }
           style={styles.userImage}
           resizeMode='cover'
         />
