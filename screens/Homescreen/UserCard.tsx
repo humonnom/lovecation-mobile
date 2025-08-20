@@ -37,7 +37,7 @@ export const UserCard = ({ user, onLikeToggle }: UserCardProps) => {
         <View style={styles.cardOverlay}>
           <View style={styles.userInfo}>
             <Text style={styles.userName}>
-              {user.first_name}, {user.age}
+              {user.nickname}
             </Text>
             <Text style={styles.userCity}>{user.city}</Text>
           </View>
