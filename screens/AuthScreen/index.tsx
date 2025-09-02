@@ -70,6 +70,12 @@ export const AuthScreen = () =>  {
             return
         }
 
+        const ageNum = parseInt(age)
+        if (isNaN(ageNum) || ageNum < 1 || ageNum > 120) {
+            Alert.alert("오류", "올바른 나이를 입력해주세요.")
+            return
+        }
+
         if (password !== confirmPassword) {
             Alert.alert("오류", "비밀번호가 일치하지 않습니다.")
             return
@@ -92,7 +98,7 @@ export const AuthScreen = () =>  {
                     data: {
                         nickname: nickname,
                         avatar_url: "https://avatars.githubusercontent.com/u/54441505?v=4",
-                        age: parseInt(age),
+                        age: ageNum,
                         last_name: lastName,
                         first_name: firstName,
                         city: city,
@@ -107,6 +113,7 @@ export const AuthScreen = () =>  {
             
             if (error) {
                 Alert.alert("회원가입 실패", error.message)
+                console.log(error)
             } else if (session) {
                 // 즉시 로그인된 경우 (이메일 인증이 비활성화된 경우)
                 Alert.alert("회원가입 성공", "환영합니다!")
