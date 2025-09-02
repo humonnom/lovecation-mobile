@@ -23,6 +23,17 @@ export const AuthScreen = () =>  {
     const [isSignUp, setIsSignUp] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    
+    // Profile fields for signup
+    const [nickname, setNickname] = useState("")
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [age, setAge] = useState("")
+    const [city, setCity] = useState("")
+    const [description, setDescription] = useState("")
+    const [nationality, setNationality] = useState("")
+    const [nameReading, setNameReading] = useState("")
+    const [gender, setGender] = useState("")
 
     async function signInWithEmail() {
         if (!email || !password) {
@@ -54,6 +65,11 @@ export const AuthScreen = () =>  {
             return
         }
 
+        if (!nickname || !firstName || !lastName || !age || !city || !nationality || !nameReading || !gender) {
+            Alert.alert("오류", "모든 프로필 정보를 입력해주세요.")
+            return
+        }
+
         if (password !== confirmPassword) {
             Alert.alert("오류", "비밀번호가 일치하지 않습니다.")
             return
@@ -72,6 +88,21 @@ export const AuthScreen = () =>  {
             } = await supabase.auth.signUp({
                 email: email,
                 password: password,
+                options: {
+                    data: {
+                        nickname: nickname,
+                        avatar_url: "https://avatars.githubusercontent.com/u/54441505?v=4",
+                        age: parseInt(age),
+                        last_name: lastName,
+                        first_name: firstName,
+                        city: city,
+                        is_online: false,
+                        description: description || "안녕하세요.",
+                        nationality: nationality,
+                        name_reading: nameReading,
+                        gender: gender
+                    }
+                }
             })
             
             if (error) {
@@ -179,6 +210,117 @@ export const AuthScreen = () =>  {
                             </View>
                         )}
 
+                        {/* Profile Fields (Sign Up only) */}
+                        {isSignUp && (
+                            <>
+                                <View style={styles.inputContainer}>
+                                    <View style={styles.inputWrapper}>
+                                        <Icon name="person" size={20} color="#666" style={styles.inputIcon} />
+                                        <TextInput
+                                            style={styles.textInput}
+                                            placeholder="닉네임"
+                                            value={nickname}
+                                            onChangeText={setNickname}
+                                        />
+                                    </View>
+                                </View>
+                                
+                                <View style={styles.rowContainer}>
+                                    <View style={[styles.inputContainer, styles.halfWidth]}>
+                                        <View style={styles.inputWrapper}>
+                                            <TextInput
+                                                style={styles.textInput}
+                                                placeholder="성"
+                                                value={lastName}
+                                                onChangeText={setLastName}
+                                            />
+                                        </View>
+                                    </View>
+                                    <View style={[styles.inputContainer, styles.halfWidth]}>
+                                        <View style={styles.inputWrapper}>
+                                            <TextInput
+                                                style={styles.textInput}
+                                                placeholder="이름"
+                                                value={firstName}
+                                                onChangeText={setFirstName}
+                                            />
+                                        </View>
+                                    </View>
+                                </View>
+                                
+                                <View style={styles.inputContainer}>
+                                    <View style={styles.inputWrapper}>
+                                        <TextInput
+                                            style={styles.textInput}
+                                            placeholder="영문명 (예: JuEun)"
+                                            value={nameReading}
+                                            onChangeText={setNameReading}
+                                        />
+                                    </View>
+                                </View>
+                                
+                                <View style={styles.rowContainer}>
+                                    <View style={[styles.inputContainer, styles.halfWidth]}>
+                                        <View style={styles.inputWrapper}>
+                                            <TextInput
+                                                style={styles.textInput}
+                                                placeholder="나이"
+                                                value={age}
+                                                onChangeText={setAge}
+                                                keyboardType="numeric"
+                                            />
+                                        </View>
+                                    </View>
+                                    <View style={[styles.inputContainer, styles.halfWidth]}>
+                                        <View style={styles.inputWrapper}>
+                                            <TextInput
+                                                style={styles.textInput}
+                                                placeholder="성별 (male/female)"
+                                                value={gender}
+                                                onChangeText={setGender}
+                                            />
+                                        </View>
+                                    </View>
+                                </View>
+                                
+                                <View style={styles.rowContainer}>
+                                    <View style={[styles.inputContainer, styles.halfWidth]}>
+                                        <View style={styles.inputWrapper}>
+                                            <TextInput
+                                                style={styles.textInput}
+                                                placeholder="도시"
+                                                value={city}
+                                                onChangeText={setCity}
+                                            />
+                                        </View>
+                                    </View>
+                                    <View style={[styles.inputContainer, styles.halfWidth]}>
+                                        <View style={styles.inputWrapper}>
+                                            <TextInput
+                                                style={styles.textInput}
+                                                placeholder="국가 (KR, US, ...)"
+                                                value={nationality}
+                                                onChangeText={setNationality}
+                                            />
+                                        </View>
+                                    </View>
+                                </View>
+                                
+                                <View style={styles.inputContainer}>
+                                    <View style={styles.inputWrapper}>
+                                        <TextInput
+                                            style={styles.textInput}
+                                            placeholder="자기소개 (선택사항)"
+                                            value={description}
+                                            onChangeText={setDescription}
+                                            multiline={true}
+                                            numberOfLines={3}
+                                        />
+                                    </View>
+                                </View>
+                            </>
+                        )}
+
                         {/* Submit Button */}
                         <TouchableOpacity
                             style={[styles.submitButton, loading && styles.submitButtonDisabled]}
@@ -228,8 +370,8 @@ const styles = StyleSheet.create({
     },
     scrollContainer: {
         flexGrow: 1,
-        justifyContent: "center",
         paddingHorizontal: 20,
+        paddingVertical: 40,
     },
     header: {
         alignItems: "center",
@@ -361,5 +503,12 @@ const styles = StyleSheet.create({
     eyeButton: {
         padding: 4,
         marginLeft: 8,
+    },
+    rowContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
+    halfWidth: {
+        width: "48%",
     },
 })
