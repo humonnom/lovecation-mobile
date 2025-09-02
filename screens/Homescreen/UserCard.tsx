@@ -2,6 +2,7 @@ import * as React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import type { Profile } from "../../types";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface UserCardProps {
   user: Profile;
@@ -10,6 +11,8 @@ interface UserCardProps {
 
 export const UserCard = ({ user, onLikeToggle }: UserCardProps) => {
   const [isLiked, setIsLiked] = React.useState(false);
+  const { session } = useAuth();
+  const isLoggedIn = !!session;
 
   const handleLikePress = () => {
     const newLikedState = !isLiked;
@@ -35,9 +38,15 @@ export const UserCard = ({ user, onLikeToggle }: UserCardProps) => {
               ? { uri: user.avatar_url } 
               : require("../../assets/profiles/profile1.jpg")
           }
-          style={styles.userImage}
+          style={[styles.userImage, !isLoggedIn && styles.blurredImage]}
           resizeMode='cover'
         />
+        {!isLoggedIn && (
+          <View style={styles.blurOverlay}>
+            <Icon name="lock" size={24} color="rgba(255,255,255,0.8)" />
+            <Text style={styles.lockText}>로그인하세요</Text>
+          </View>
+        )}
         <View style={styles.cardOverlay}>
           <View style={styles.userInfo}>
             <Text style={styles.userName}>
@@ -155,5 +164,24 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 4,
     elevation: 3,
+  },
+  blurredImage: {
+    opacity: 0.1,
+  },
+  blurOverlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0,0,0,0.6)",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 8,
+  },
+  lockText: {
+    color: "rgba(255,255,255,0.8)",
+    fontSize: 12,
+    fontWeight: "500",
   },
 });

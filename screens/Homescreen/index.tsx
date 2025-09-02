@@ -3,9 +3,22 @@ import { View, ActivityIndicator, Text, StyleSheet } from "react-native";
 import { Header } from "../../components/Header";
 import { UserGrid } from "./UserGrid";
 import { useProfiles } from "../../hooks/queries";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const HomeScreen = () => {
-  const { profiles, loading, error } = useProfiles({ gender: 'female' });
+  const { session, user } = useAuth();
+  const isLoggedIn = !!session;
+  
+  // 로그인한 경우: 반대 성별, 비로그인: 모든 성별
+  const getGenderFilter = () => {
+    if (!isLoggedIn || !user?.user_metadata?.gender) {
+      return null; // 모든 성별
+    }
+    // 반대 성별 반환
+    return user.user_metadata.gender === 'male' ? 'female' : 'male';
+  };
+  
+  const { profiles, loading, error } = useProfiles({ gender: getGenderFilter() });
 
   if (loading) {
     return (
