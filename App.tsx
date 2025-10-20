@@ -40,6 +40,7 @@ const queryClient = new QueryClient({
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
+
 // Stack Navigator for Home screen with UserDetail
 const HomeStack = () => {
   return (
@@ -147,7 +148,17 @@ const AppContent = () => {
           </Tab.Screen>
           <Tab.Screen
             name="Profile"
-            component={session && session.user ? ProfileScreen : AuthScreen}
+            // component={session && session.user ? ProfileScreen : AuthScreen}
+              component= {(props: any) => (
+                  <EmptyScreenComponent
+                      {...props}
+                      onNavigateToProfile={() => {
+                          props.navigation.navigate("Profile");
+                      }}
+                      featureName={t('tabs.profile')}
+                      icon='favorite'
+                  />
+              )}
             options={{ tabBarLabel: t('tabs.profile') }}
           />
         </Tab.Navigator>
