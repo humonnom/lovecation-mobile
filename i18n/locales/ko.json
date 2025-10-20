@@ -1,6 +1,9 @@
 {
   "common": {
-    "loading": "로딩 중..."
+    "loading": "로딩 중...",
+    "inDevelopment": "개발 중인 기능입니다",
+    "featureInProgress": "{{feature}} 기능 준비 중",
+    "pleaseWait": "열심히 만들고 있어요. 잠시만 기다려주세요."
   },
   "tabs": {
     "explore": "둘러보기",
@@ -13,5 +16,17 @@
     "subtitle": "하트를 눌러 관심을 표현해보세요.",
     "loadingProfiles": "프로필을 불러오는 중...",
     "errorLoadingProfiles": "프로필을 불러올 수 없습니다"
+  },
+  "profile": {
+    "title": "프로필",
+    "subtitle": "내 정보 및 설정",
+    "noLocation": "위치 정보 없음",
+    "logout": "로그아웃",
+    "logoutConfirm": "정말 로그아웃 하시겠습니까?",
+    "cancel": "취소",
+    "logoutSuccess": "로그아웃 완료",
+    "logoutSuccessMessage": "성공적으로 로그아웃되었습니다.",
+    "launchRequestComplete": "정식 런치 희망 완료",
+    "launchRequestMessage": "정식 런치 알림을 받으실 수 있도록 등록되었습니다!"
   }
 }

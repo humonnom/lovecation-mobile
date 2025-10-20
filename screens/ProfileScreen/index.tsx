@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   Alert,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { InterestSection } from "../../components/InterestSection";
 import { Header } from "../../components/Header";
@@ -15,6 +16,7 @@ import {supabase} from "../../lib/supabase";
 import {useUserProfile} from "../../hooks/queries";
 
 export const ProfileScreen = () => {
+  const { t } = useTranslation();
   const { profile, loading, updateProfile, displayName, avatarUrl } = useUserProfile();
 
   const [hasRequestedLaunch, setHasRequestedLaunch] = React.useState(false);
@@ -22,26 +24,26 @@ export const ProfileScreen = () => {
   const handleLaunchRequest = () => {
     setHasRequestedLaunch(true);
     Alert.alert(
-      "정식 런치 희망 완료",
-      "정식 런치 알림을 받으실 수 있도록 등록되었습니다!"
+      t('profile.launchRequestComplete'),
+      t('profile.launchRequestMessage')
     );
   };
 
   const handleLogout = () => {
     Alert.alert(
-        "로그아웃",
-        "정말 로그아웃 하시겠습니까?",
+        t('profile.logout'),
+        t('profile.logoutConfirm'),
         [
           {
-            text: "취소",
+            text: t('profile.cancel'),
             style: "cancel"
           },
           {
-            text: "로그아웃",
+            text: t('profile.logout'),
             style: "destructive",
             onPress: async() => {
                 await supabase.auth.signOut();
-                Alert.alert("로그아웃 완료", "성공적으로 로그아웃되었습니다.");
+                Alert.alert(t('profile.logoutSuccess'), t('profile.logoutSuccessMessage'));
             }
           }
         ]
@@ -50,15 +52,15 @@ export const ProfileScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header title='프로필' subtitle='내 정보 및 설정' />
+      <Header title={t('profile.title')} subtitle={t('profile.subtitle')} />
 
       {/* Profile Section */}
       <View style={styles.profileSection}>
         <View style={styles.profileImageContainer}>
           <Image
             source={
-              avatarUrl 
-                ? { uri: avatarUrl } 
+              avatarUrl
+                ? { uri: avatarUrl }
                 : require("../../assets/profiles/man-profile2.jpg")
             }
             style={styles.profileImage}
@@ -71,7 +73,7 @@ export const ProfileScreen = () => {
           {displayName} {profile?.age}
         </Text>
         <Text style={styles.profileLocation}>
-          {profile?.city || '위치 정보 없음'}
+          {profile?.city || t('profile.noLocation')}
         </Text>
       </View>
 
@@ -110,7 +112,7 @@ export const ProfileScreen = () => {
       <View style={styles.logoutContainer}>
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
           <Icon name="logout" size={20} color="#666" />
-          <Text style={styles.logoutText}>로그아웃</Text>
+          <Text style={styles.logoutText}>{t('profile.logout')}</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { InterestSection } from "./InterestSection";
 import { Header } from "./Header";
@@ -14,13 +15,15 @@ export const EmptyScreenComponent = ({
   featureName,
   icon,
 }: EmptyScreenComponentProps) => {
+  const { t } = useTranslation();
+
   return (
     <SafeAreaView style={styles.container}>
       <Header title={featureName} subtitle='' />
 
       <View style={styles.developmentBanner}>
         <Icon name='construction' size={24} color='#FF9800' />
-        <Text style={styles.developmentText}>개발 중인 기능입니다</Text>
+        <Text style={styles.developmentText}>{t('common.inDevelopment')}</Text>
       </View>
 
       <View style={styles.content}>
@@ -28,9 +31,9 @@ export const EmptyScreenComponent = ({
           <Icon name={icon} size={80} color='#FFCBD2' />
         </View>
 
-        <Text style={styles.mainTitle}>{featureName} 기능 준비 중</Text>
+        <Text style={styles.mainTitle}>{t('common.featureInProgress', { feature: featureName })}</Text>
         <Text style={styles.subtitle}>
-          열심히 만들고 있어요. 잠시만 기다려주세요.
+          {t('common.pleaseWait')}
         </Text>
 
         <InterestSection
