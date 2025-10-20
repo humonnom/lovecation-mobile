@@ -1,38 +1,62 @@
-import {Text, TouchableOpacity, StyleSheet} from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
-import * as React from "react";
-import { LOCALES, type Locale as LocaleType } from "../i18n/constants";
+import * as React from "react"
+import { TouchableOpacity, Text, StyleSheet } from "react-native"
+import {Locale as LocaleType, LOCALES} from "../i18n/constants"
+import {KoreanFlag} from "./KoreanFlag";
+import {JapaneseFlag} from "./JapaneseFlag";
+import {useTranslation} from "react-i18next";
 
-type LocaleProps = {
-    locale: LocaleType;
-    toggle: () => void;
+const localeConfig = {
+    ko: {
+        flag: KoreanFlag,
+        label: "한국어",
+    },
+    ja: {
+        flag: JapaneseFlag,
+        label: "日本語",
+    },
 }
 
+const Locale = () => {
+    const { i18n } = useTranslation()
+    const currentLocale = i18n.language as LocaleType
+    const newLocale = currentLocale === LOCALES.KO ? LOCALES.JA : LOCALES.KO
 
-const Locale = ({locale, toggle}: LocaleProps) => {
+    const toggleLocale = () => {
+        i18n.changeLanguage(newLocale)
+    }
+    const config = localeConfig[newLocale]
+
     return (
-            <TouchableOpacity style={styles.localeToggle} onPress={toggle}>
-                <Text style={styles.localeText}>{locale === LOCALES.KO ? "한국어" : "日本語"}</Text>
-                <Icon name="language" size={20} color="#EE9CA7" />
-            </TouchableOpacity>
+        <TouchableOpacity style={styles.container} onPress={toggleLocale} activeOpacity={0.7}>
+            {React.createElement(config.flag, { size: 24 })}
+            <Text style={styles.label}>{config.label}</Text>
+        </TouchableOpacity>
     )
 }
 
-export default Locale;
 const styles = StyleSheet.create({
-    localeToggle: {
+    container: {
         flexDirection: "row",
         alignItems: "center",
-        backgroundColor: "#FFCBD2",
-        paddingHorizontal: 12,
+        backgroundColor: "white",
+        paddingHorizontal: 14,
         paddingVertical: 8,
         borderRadius: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+        elevation: 2,
         gap: 6,
     },
-    localeText: {
+    label: {
         fontSize: 14,
-        color: "#EE9CA7",
+        color: "#333",
         fontWeight: "600",
     },
-});
+})
 
+export default Locale

@@ -1,36 +1,28 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { useTranslation } from "react-i18next";
-import { LOCALES, type Locale as LocaleType } from "../i18n/constants";
-import Locale from "./Locale";
+import * as React from "react"
+import { View, Text, StyleSheet } from "react-native"
+import Locale from "./Locale"
 
 interface HeaderProps {
-  title: string;
-  subtitle: string;
+  title: string
+  subtitle: string
 }
 
 export const Header = (props: HeaderProps) => {
-  const { i18n } = useTranslation();
-  const currentLocale = i18n.language as LocaleType;
 
-  const toggleLocale = () => {
-    const newLocale = currentLocale === LOCALES.KO ? LOCALES.JA : LOCALES.KO;
-    i18n.changeLanguage(newLocale);
-  };
 
   return (
-    <View style={styles.header}>
-      <View style={styles.headerLeft}>
-        <Text style={styles.headerTitle}>{props.title}</Text>
-        <Text style={styles.headerSubtitle}>{props.subtitle}</Text>
-      </View>
+      <View style={styles.header}>
+        <View style={styles.headerLeft}>
+          <Text style={styles.headerTitle}>{props.title}</Text>
+          <Text style={styles.headerSubtitle}>{props.subtitle}</Text>
+        </View>
 
-      <View style={styles.headerRight}>
-        <Locale locale={currentLocale} toggle={toggleLocale} />
+        <View style={styles.headerRight}>
+          <Locale />
+        </View>
       </View>
-    </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   header: {
@@ -57,4 +49,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#666",
   },
-});
+})
