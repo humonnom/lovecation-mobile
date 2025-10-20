@@ -28,5 +28,16 @@
     "logoutSuccessMessage": "正常にログアウトされました。",
     "launchRequestComplete": "正式リリース希望完了",
     "launchRequestMessage": "正式リリース通知を受け取れるように登録されました！"
+  },
+  "interest": {
+    "title": "事前登録する",
+    "earlyBirdTitle": "先着100名限定アーリーバード特典のご案内",
+    "benefit1": "✓ 正式リリース前に先行体験",
+    "benefit2": "✓ 初月プレミアム無料",
+    "benefit3": "✓ プロフィール優先表示",
+    "buttonText": "事前登録して特典を受け取る",
+    "errorTitle": "エラー",
+    "errorCannotOpen": "リンクを開けません。",
+    "errorOpeningLink": "リンクを開く際に問題が発生しました。"
   }
 }

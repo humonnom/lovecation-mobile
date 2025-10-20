@@ -1,5 +1,6 @@
 import * as React from "react";
 import { View, StyleSheet, Image, Text, TouchableOpacity, Linking, Alert } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/Ionicons";
 
 interface InterestedUser {
@@ -65,6 +66,8 @@ const renderStackedAvatars = () => {
 };
 
 export const InterestSection = (props: InterestSectionProps) => {
+  const { t } = useTranslation();
+
   const handleTypeformPress = async () => {
     const typeformUrl = 'https://form.typeform.com/to/GD1xzjd6';
 
@@ -74,18 +77,18 @@ export const InterestSection = (props: InterestSectionProps) => {
       if (supported) {
         await Linking.openURL(typeformUrl);
       } else {
-        Alert.alert('오류', '링크를 열 수 없습니다.');
+        Alert.alert(t('interest.errorTitle'), t('interest.errorCannotOpen'));
       }
     } catch (error) {
       console.error('Error opening Typeform:', error);
-      Alert.alert('오류', '링크를 여는 중 문제가 발생했습니다.');
+      Alert.alert(t('interest.errorTitle'), t('interest.errorOpeningLink'));
     }
   };
 
   return (
     <View style={styles.interestSection}>
       <View style={styles.interestHeader}>
-        <Text style={styles.interestTitle}>사전 신청하기</Text>
+        <Text style={styles.interestTitle}>{t('interest.title')}</Text>
         {/*<Text style={styles.interestTitle}>받은 관심</Text>*/}
         {/*<Text style={styles.interestCount}>{mockInterestedUsers.length}명</Text>*/}
       </View>
@@ -106,11 +109,11 @@ export const InterestSection = (props: InterestSectionProps) => {
           {renderStackedAvatars()}
           <View style={styles.interestText}>
             <Text style={styles.interestDescription}>
-              선착순 100명 한정 얼리버드 혜택 안내
+              {t('interest.earlyBirdTitle')}
             </Text>
-            <Text style={styles.launchMessage}>{'✓ 정식 출시 전 미리 체험'}</Text>
-            <Text style={styles.launchMessage}>{'✓ 첫 달 프리미엄 무료'}</Text>
-            <Text style={styles.launchMessage}>{'✓ 프로필 우선 노출'}</Text>
+            <Text style={styles.launchMessage}>{t('interest.benefit1')}</Text>
+            <Text style={styles.launchMessage}>{t('interest.benefit2')}</Text>
+            <Text style={styles.launchMessage}>{t('interest.benefit3')}</Text>
           </View>
         </View>
       {/*)}*/}
@@ -123,7 +126,7 @@ export const InterestSection = (props: InterestSectionProps) => {
           onPress={handleTypeformPress}
         >
           <Icon name='person' size={20} color='white' />
-          <Text style={styles.profileButtonText}>사전 신청하고 혜택 받기</Text>
+          <Text style={styles.profileButtonText}>{t('interest.buttonText')}</Text>
           <Icon name='arrow-forward' size={20} color='white' />
         </TouchableOpacity>
       {/*)}*/}
