@@ -4,6 +4,7 @@ import { Header } from "../../components/Header";
 import { UserGrid } from "./UserGrid";
 import { useProfiles } from "../../hooks/queries";
 import { useAuth } from "../../contexts/AuthContext";
+import Locale from "../../components/Locale";
 
 export const HomeScreen = () => {
   const { session, user } = useAuth();

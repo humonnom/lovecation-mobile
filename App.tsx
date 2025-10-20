@@ -6,6 +6,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import './i18n';
 import { HomeScreen } from "./screens/HomeScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
 import { ProfileDetailPage } from "./screens/UserDetailScreen";
@@ -53,18 +55,20 @@ const HomeStack = () => {
           // headerTintColor: "#333",
         }}
       />
+
     </Stack.Navigator>
   );
 };
 
 const AppContent = () => {
   const { session, loading } = useAuth();
+  const { t } = useTranslation();
 
   if (loading) {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: "#FDFDFD", justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size="large" color="#EE9CA7" />
-        <Text style={{ marginTop: 10, color: "#666" }}>로딩 중...</Text>
+        <Text style={{ marginTop: 10, color: "#666" }}>{t('common.loading')}</Text>
       </SafeAreaView>
     );
   }
@@ -79,13 +83,13 @@ const AppContent = () => {
             tabBarIcon: ({ color, size }) => {
               let iconName = "explore";
 
-              if (route.name === "둘러보기") {
+              if (route.name === t('tabs.explore')) {
                 iconName = "explore";
-              } else if (route.name === "매치") {
+              } else if (route.name === t('tabs.match')) {
                 iconName = "favorite";
-              } else if (route.name === "메시지") {
+              } else if (route.name === t('tabs.message')) {
                 iconName = "chat";
-              } else if (route.name === "프로필") {
+              } else if (route.name === t('tabs.profile')) {
                 iconName = "person";
               }
 
@@ -106,32 +110,32 @@ const AppContent = () => {
             },
           })}
         >
-          <Tab.Screen name='둘러보기' component={HomeStack} />
-        <Tab.Screen name='매치'>
+          <Tab.Screen name={t('tabs.explore')} component={HomeStack} />
+        <Tab.Screen name={t('tabs.match')}>
           {(props: any) => (
             <EmptyScreenComponent
               {...props}
               onNavigateToProfile={() => {
-                props.navigation.navigate("프로필");
+                props.navigation.navigate(t('tabs.profile'));
               }}
-              featureName='매치'
+              featureName={t('tabs.match')}
               icon='favorite'
             />
           )}
         </Tab.Screen>
-         <Tab.Screen name='메시지'>
+         <Tab.Screen name={t('tabs.message')}>
             {(props: any) => (
               <EmptyScreenComponent
                 {...props}
                 onNavigateToProfile={() => {
-                  props.navigation.navigate("프로필");
+                  props.navigation.navigate(t('tabs.profile'));
                 }}
-                featureName='메시지'
+                featureName={t('tabs.message')}
                 icon='chat'
               />
             )}
           </Tab.Screen>
-          <Tab.Screen name='프로필' component={session && session.user ? ProfileScreen : AuthScreen} />
+          <Tab.Screen name={t('tabs.profile')} component={session && session.user ? ProfileScreen : AuthScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaView>

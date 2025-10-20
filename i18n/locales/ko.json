@@ -1,0 +1,11 @@
+{
+  "common": {
+    "loading": "로딩 중..."
+  },
+  "tabs": {
+    "explore": "둘러보기",
+    "match": "매치",
+    "message": "메시지",
+    "profile": "프로필"
+  }
+}
