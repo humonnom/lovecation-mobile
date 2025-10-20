@@ -48,9 +48,9 @@ const HomeStack = () => {
         component={ProfileDetailPage}
         options={{
           headerShown: false,
-          headerTitle: "",
-          headerTransparent: true,
-          headerTintColor: "#333",
+          // headerTitle: "",
+          // headerTransparent: true,
+          // headerTintColor: "#333",
         }}
       />
     </Stack.Navigator>
