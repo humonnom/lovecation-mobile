@@ -65,9 +65,9 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
                 <TouchableOpacity onPress={handleClose} style={styles.backButton}>
                     <Icon name="arrow-back" size={24} color="#333" />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.moreButton}>
-                    <Icon name="more-vert" size={24} color="#333" />
-                </TouchableOpacity>
+                {/*<TouchableOpacity style={styles.moreButton}>*/}
+                {/*    <Icon name="more-vert" size={24} color="#333" />*/}
+                {/*</TouchableOpacity>*/}
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false}>
