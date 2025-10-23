@@ -1,8 +1,7 @@
 import * as React from "react"
 import { TouchableOpacity, Text, StyleSheet } from "react-native"
 import {Locale as LocaleType, LOCALES} from "../i18n/constants"
-import {KoreanFlag} from "./KoreanFlag";
-import {JapaneseFlag} from "./JapaneseFlag";
+import {KoreanFlag, JapaneseFlag} from "./flags";
 import {useTranslation} from "react-i18next";
 
 const localeConfig = {
