@@ -3,7 +3,8 @@
     "loading": "読み込み中...",
     "inDevelopment": "開発中の機能です",
     "featureInProgress": "{{feature}}機能準備中",
-    "pleaseWait": "一生懸命作っています。少々お待ちください。"
+    "pleaseWait": "一生懸命作っています。少々お待ちください。",
+    "privacyPolicy": "個人情報処理方針"
   },
   "tabs": {
     "explore": "探索",

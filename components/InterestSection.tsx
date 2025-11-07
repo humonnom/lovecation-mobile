@@ -2,6 +2,7 @@ import * as React from "react";
 import {Alert, Image, Linking, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useTranslation} from "react-i18next";
 import Icon from "react-native-vector-icons/Ionicons";
+import {PrivacyPolicyLink} from "./PrivacyPolicyLink";
 
 interface InterestedUser {
   id: number;
@@ -126,6 +127,9 @@ export const InterestSection = (props: InterestSectionProps) => {
       {/*{props?.renderButton ? (*/}
       {/*  props.renderButton()*/}
       {/*) : (*/}
+        <View style={styles.interestPrivacyPolicyLink}>
+            <PrivacyPolicyLink />
+        </View>
         <TouchableOpacity
           style={styles.profileButton}
           onPress={handleTypeformPress}
@@ -222,7 +226,6 @@ const styles = StyleSheet.create({
   interestContent: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 24,
   },
   stackedAvatars: {
     position: "relative",
@@ -269,6 +272,13 @@ const styles = StyleSheet.create({
     color: "#333",
     marginBottom: 8,
     fontWeight: "500",
+  },
+  interestPrivacyPolicyLink : {
+    width: "100%",
+    height: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 6,
   },
   launchMessage: {
     fontSize: 14,

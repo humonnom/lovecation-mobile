@@ -29,7 +29,7 @@ export const EmptyScreenComponent = ({
       <View style={styles.content}>
         <View style={styles.iconContainer}>
             <Image
-                source={require("../../assets/icon.png")}
+                source={require("../assets/icon.png")}
                 style={styles.logoImage}
                 resizeMode="contain"
             />
