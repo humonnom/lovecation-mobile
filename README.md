@@ -1,4 +1,8 @@
-# long-vaca
+# lovecation :green_heart::ship:
+* Love :green_heart: + Vacation :ship:
+
+<img width="300" height="auto" alt="logo" src="https://github.com/user-attachments/assets/aef6cd4d-a37e-42c5-aafc-f6f7a5f0c995" />
+
 
 # 환경 설정
 ## 필수 사항
@@ -22,3 +26,7 @@
       * 유저 상세 페이지 개발 완료(더미 데이터 이용)
       * 매칭, 메세지, 프로필 기능 오픈x
       * 회원가입, 로그인 기능 구현은 된 상태
+   * 25/11/7
+      * 스켈레톤 적용
+      * 다국어 개발 완료(한국어/일본어)
+      * 로고 적용
