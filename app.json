@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "long-vaca",
-    "slug": "long-vaca",
+    "name": "Lovecation",
+    "slug": "lovecation",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,13 +13,16 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.humonnom.lovecation",
+      "buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "package": "com.humonnom.lovecation",
       "edgeToEdgeEnabled": true
     },
     "web": {
