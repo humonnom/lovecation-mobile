@@ -6,6 +6,7 @@ import { useNavigation, useRoute } from "@react-navigation/native"
 import { useTranslation } from "react-i18next"
 import type { Profile } from "../../types"
 import dummyData from "./dummyData.json"
+import { UserDetailSkeleton } from "../../components/skeletons"
 
 const { width } = Dimensions.get("window")
 
@@ -27,6 +28,16 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
     const user = (route.params as any)?.user as Profile | undefined;
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
     const [isKR, setIsKR] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
+
+    // Simulate loading state for skeleton
+    React.useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 800);
+
+        return () => clearTimeout(timer);
+    }, [])
 
     console.log(user?.id);
 
@@ -131,6 +142,11 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
             navigation.goBack();
         }
     };
+
+    // Show skeleton while loading
+    if (isLoading) {
+        return <UserDetailSkeleton />;
+    }
 
     // Show loading or placeholder if no user data
     if (!user) {
