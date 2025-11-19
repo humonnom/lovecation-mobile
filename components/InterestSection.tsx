@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Alert, Image, Linking, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useTranslation} from "react-i18next";
-import Icon from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/MaterialIcons"
 import {PrivacyPolicyLink} from "./PrivacyPolicyLink";
 
 interface InterestedUser {
