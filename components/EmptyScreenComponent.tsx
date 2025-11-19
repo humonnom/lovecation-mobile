@@ -1,5 +1,5 @@
 import React from "react";
-import {Image, SafeAreaView, StyleSheet, Text, View} from "react-native";
+import {Image, SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import {useTranslation} from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import {InterestSection} from "./InterestSection";
@@ -21,32 +21,38 @@ export const EmptyScreenComponent = ({
     <SafeAreaView style={styles.container}>
       <Header title={featureName} subtitle='' />
 
-      <View style={styles.developmentBanner}>
-        <Icon name='construction' size={24} color='#FF9800' />
-        <Text style={styles.developmentText}>{t('common.inDevelopment')}</Text>
-      </View>
-
-      <View style={styles.content}>
-        <View style={styles.iconContainer}>
-            <Image
-                source={require("../assets/icon.png")}
-                style={styles.logoImage}
-                resizeMode="contain"
-            />
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.developmentBanner}>
+          <Icon name='construction' size={24} color='#FF9800' />
+          <Text style={styles.developmentText}>{t('common.inDevelopment')}</Text>
         </View>
 
-        <Text style={styles.mainTitle}>{t('common.featureInProgress', { feature: featureName })}</Text>
-        <Text style={styles.subtitle}>
-          {t('common.pleaseWait')}
-        </Text>
+        <View style={styles.content}>
+          <View style={styles.iconContainer}>
+              <Image
+                  source={require("../assets/icon.png")}
+                  style={styles.logoImage}
+                  resizeMode="contain"
+              />
+          </View>
 
-        <InterestSection
-          // lunchMessage='지금 사전 신청하시고 정식 런치 알림을 받아보세요!'
-          // onPressButton={onNavigateToProfile}
-          // buttonText='프로필 페이지에서 신청하기'
-          // simple
-        />
-      </View>
+          <Text style={styles.mainTitle}>{t('common.featureInProgress', { feature: featureName })}</Text>
+          <Text style={styles.subtitle}>
+            {t('common.pleaseWait')}
+          </Text>
+
+          <InterestSection
+            // lunchMessage='지금 사전 신청하시고 정식 런치 알림을 받아보세요!'
+            // onPressButton={onNavigateToProfile}
+            // buttonText='프로필 페이지에서 신청하기'
+            // simple
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -55,6 +61,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FDFDFD",
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingBottom: 20,
   },
   header: {
     paddingHorizontal: 20,
@@ -75,6 +88,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 20,
     marginHorizontal: 20,
+    marginTop: 10,
     borderRadius: 12,
     gap: 8,
   },
@@ -84,7 +98,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   content: {
-    flex: 1,
     paddingHorizontal: 20,
     paddingTop: 40,
   },
