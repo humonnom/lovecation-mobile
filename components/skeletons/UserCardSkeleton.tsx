@@ -1,16 +1,12 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import {StyleSheet, View} from "react-native";
 import ImageSkeleton from "./ImageSkeleton";
 
-interface UserCardSkeletonProps {
-  width?: number | string;
-}
+interface UserCardSkeletonProps {}
 
-const UserCardSkeleton: React.FC<UserCardSkeletonProps> = ({
-  width = "48%",
-}) => {
+const UserCardSkeleton: React.FC<UserCardSkeletonProps> = ({}) => {
   return (
-    <View style={[styles.cardContainer, { width }]}>
+    <View style={[styles.cardContainer, { width: "48%" }]}>
       <View style={styles.userCard}>
         <ImageSkeleton width="100%" height={250} borderRadius={20} />
 

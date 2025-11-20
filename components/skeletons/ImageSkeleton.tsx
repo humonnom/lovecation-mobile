@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import { Animated, StyleSheet, View, ViewStyle } from "react-native";
+import React, {useEffect, useRef} from "react";
+import {Animated, DimensionValue, StyleSheet, View, ViewStyle} from "react-native";
 
 interface ImageSkeletonProps {
-  width?: number | string;
-  height?: number | string;
+  width?: DimensionValue;
+  height?: DimensionValue;
   borderRadius?: number;
   style?: ViewStyle;
 }
