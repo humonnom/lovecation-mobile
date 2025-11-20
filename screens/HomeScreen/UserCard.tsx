@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import { MaterialIcons } from "@expo/vector-icons";
 import type { Profile } from "../../types";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigation } from "@react-navigation/native";
@@ -46,7 +46,7 @@ export const UserCard = ({ user, onLikeToggle }: UserCardProps) => {
         />
         {!isLoggedIn && (
           <View style={styles.blurOverlay}>
-            <Icon name="lock" size={24} color="rgba(255,255,255,0.8)" />
+            <MaterialIcons name="lock" size={24} color="rgba(255,255,255,0.8)" />
             <Text style={styles.lockText}>로그인하세요</Text>
           </View>
         )}
@@ -79,7 +79,7 @@ export const UserCard = ({ user, onLikeToggle }: UserCardProps) => {
             },
           ]}
         >
-          <Icon
+          <MaterialIcons
             name={isLiked ? "favorite" : "favorite-border"}
             size={20}
             color={isLiked ? "white" : "rgba(255, 255, 255, 0.9)"}

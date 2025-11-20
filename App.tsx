@@ -4,7 +4,7 @@ import { SafeAreaView, Text, ActivityIndicator } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { QueryClient, QueryClientProvider, QueryCache, MutationCache } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import Toast from 'react-native-toast-message';
@@ -19,6 +19,7 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import { initSentry } from "./lib/sentry";
 import { handleQueryError } from "./lib/errorHandler";
 import { toastConfig } from "./lib/toast.config";
+import type { MaterialIconName } from "./types";
 
 // Sentry 초기화
 initSentry();
@@ -97,7 +98,7 @@ const AppContent = () => {
           screenOptions={({ route }) => ({
             headerShown: false,
             tabBarIcon: ({ color, size }) => {
-              let iconName = "explore";
+              let iconName: MaterialIconName = "explore";
 
               if (route.name === "Explore") {
                 iconName = "explore";
@@ -109,7 +110,7 @@ const AppContent = () => {
                 iconName = "person";
               }
 
-              return <Icon name={iconName} size={size} color={color} />;
+              return <MaterialIcons name={iconName} size={size} color={color} />;
             },
             tabBarActiveTintColor: "#EE9CA7",
             tabBarInactiveTintColor: "#666",

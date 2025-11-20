@@ -1,10 +1,10 @@
 import * as React from "react"
 import {useState} from "react"
 import {Dimensions, Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native"
-import Icon from "react-native-vector-icons/MaterialIcons"
+import {MaterialIcons} from "@expo/vector-icons"
 import {useNavigation, useRoute} from "@react-navigation/native"
 import {useTranslation} from "react-i18next"
-import type {Profile} from "../../types"
+import type {Profile, MaterialIconName} from "../../types"
 import dummyData from "./dummyData.json"
 import {UserDetailSkeleton} from "../../components/skeletons"
 
@@ -77,7 +77,7 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
     };
 
     // Lifestyle configuration
-    const lifestyleConfig = [
+    const lifestyleConfig: Array<{ key: string; icon: MaterialIconName; labelKey: string }> = [
         { key: 'drinking', icon: 'local-bar', labelKey: '음주' },
         { key: 'smoking', icon: 'smoke-free', labelKey: '흡연' },
         { key: 'exercise', icon: 'fitness-center', labelKey: '운동' },
@@ -85,7 +85,7 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
     ];
 
     // Future plans icons
-    const futurePlansIcons: Record<string, string> = {
+    const futurePlansIcons: Record<string, MaterialIconName> = {
         'long_distance_ok': 'favorite',
         'visit_often': 'flight',
         'relocation_considering': 'home',
@@ -154,7 +154,7 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
             <SafeAreaView style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity onPress={handleClose} style={styles.backButton}>
-                        <Icon name="arrow-back" size={24} color="#333" />
+                        <MaterialIcons name="arrow-back" size={24} color="#333" />
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -169,7 +169,7 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
             {/* Header */}
             <View style={styles.header}>
                 <TouchableOpacity onPress={handleClose} style={styles.backButton}>
-                    <Icon name="arrow-back" size={24} color="#333" />
+                    <MaterialIcons name="arrow-back" size={24} color="#333" />
                 </TouchableOpacity>
                 {/*<TouchableOpacity style={styles.moreButton}>*/}
                 {/*    <Icon name="more-vert" size={24} color="#333" />*/}
@@ -218,13 +218,13 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
                     <View style={styles.basicInfo}>
                         {user.age && (
                             <View style={styles.infoItem}>
-                                <Icon name="cake" size={18} color="#666" />
+                                <MaterialIcons name="cake" size={18} color="#666" />
                                 <Text style={styles.infoText}>{user.age}{t('userDetail.age')}</Text>
                             </View>
                         )}
                         {user.city && user.nationality && (
                             <View style={styles.infoItem}>
-                                <Icon name="place" size={18} color="#666" />
+                                <MaterialIcons name="place" size={18} color="#666" />
                                 <Text style={styles.infoText}>{user.city}, {user.nationality}</Text>
                             </View>
                         )}
@@ -237,7 +237,7 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
                         <View style={styles.sectionHeader}>
                             <Text style={styles.sectionTitle}>{t('userDetail.aboutMe')}</Text>
                             <TouchableOpacity style={styles.translateButton} onPress={() => setIsKR(!isKR)}>
-                                <Icon name="translate" size={16} color="#EE9CA7" />
+                                <MaterialIcons name="translate" size={16} color="#EE9CA7" />
                                 <Text style={styles.translateButtonText}>{isKR? "JP":"KR"}</Text>
                             </TouchableOpacity>
                         </View>
@@ -245,7 +245,7 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
                             {isKR ? userDetailData.descriptions.ko : userDetailData.descriptions.ja}
                         </Text>
                         <Text style={styles.translationNote}>
-                            <Icon name="info-outline" size={12} color="#999" /> {t('userDetail.translationNote')}
+                            <MaterialIcons name="info-outline" size={12} color="#999" /> {t('userDetail.translationNote')}
                         </Text>
                     </View>
                 )}
@@ -286,7 +286,7 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
                                     </Text>
                                     <View style={styles.starsContainer}>
                                         {[1, 2, 3, 4, 5].map((star) => (
-                                            <Icon key={star} name="star" size={18} color={star <= level ? "#FFB800" : "#E0E0E0"} />
+                                            <MaterialIcons key={star} name="star" size={18} color={star <= level ? "#FFB800" : "#E0E0E0"} />
                                         ))}
                                     </View>
                                     <Text style={styles.languageLevel}>
@@ -334,7 +334,7 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
 
                                 return (
                                     <View key={config.key} style={styles.lifestyleItem}>
-                                        <Icon name={config.icon} size={24} color="#666" />
+                                        <MaterialIcons name={config.icon} size={24} color="#666" />
                                         <Text style={styles.lifestyleLabel}>{translatedLabel}</Text>
                                         <Text style={styles.lifestyleValue}>{translatedValue}</Text>
                                     </View>
@@ -354,7 +354,7 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
 
                             return (
                                 <View key={index} style={styles.planItem}>
-                                    <Icon name={icon} size={20} color="#EE9CA7" />
+                                    <MaterialIcons name={icon} size={20} color="#EE9CA7" />
                                     <Text style={styles.planText}>{translatedText}</Text>
                                 </View>
                             );
@@ -380,7 +380,7 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
 
                 {/* Demo Notice */}
                 <View style={styles.demoNotice}>
-                    <Icon name="info" size={20} color="#FF9800" />
+                    <MaterialIcons name="info" size={20} color="#FF9800" />
                     <Text style={styles.demoNoticeText}>
                         {t('userDetail.demoNotice')}
                     </Text>

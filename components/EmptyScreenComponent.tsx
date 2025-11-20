@@ -1,7 +1,7 @@
 import React from "react";
 import {Image, SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import {useTranslation} from "react-i18next";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import { MaterialIcons } from "@expo/vector-icons";
 import {InterestSection} from "./InterestSection";
 import {Header} from "./Header";
 
@@ -27,7 +27,7 @@ export const EmptyScreenComponent = ({
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.developmentBanner}>
-          <Icon name='construction' size={24} color='#FF9800' />
+          <MaterialIcons name='construction' size={24} color='#FF9800' />
           <Text style={styles.developmentText}>{t('common.inDevelopment')}</Text>
         </View>
 
