@@ -5,6 +5,7 @@
   },
   "build": {
     "development": {
+      "node": "20.19.5",
       "developmentClient": true,
       "distribution": "internal",
       "env": {
@@ -14,6 +15,7 @@
       }
     },
     "preview": {
+      "node": "20.19.5",
       "distribution": "internal",
       "ios": {
         "simulator": true
@@ -26,6 +28,7 @@
       }
     },
     "production": {
+      "node": "20.19.5",
       "autoIncrement": true,
       "env": {
         "EXPO_PUBLIC_SUPABASE_URL": "$EXPO_PUBLIC_SUPABASE_URL",
