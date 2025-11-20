@@ -17,13 +17,13 @@ export const initSentry = () => {
     console.warn('Sentry DSN이 설정되지 않았습니다. .env.local 파일에 SENTRY_DSN을 설정하세요.');
     return;
   }
-
+  console.log('sentry init')
   Sentry.init({
     dsn,
     // 개발 환경에서는 디버그 모드 활성화
-    debug: __DEV__,
+    debug: true,// __DEV__,
     // 프로덕션 환경에서만 에러 전송
-    enabled: !__DEV__,
+    enabled: true, //!__DEV__,
     // 환경 설정
     environment: __DEV__ ? 'development' : 'production',
     // 릴리즈 버전 추적

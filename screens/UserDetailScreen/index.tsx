@@ -1,12 +1,23 @@
 import * as React from "react"
 import {useState} from "react"
-import {Dimensions, Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native"
+import {
+    Button,
+    Dimensions,
+    Image,
+    SafeAreaView,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
+} from "react-native"
 import {MaterialIcons} from "@expo/vector-icons"
 import {useNavigation, useRoute} from "@react-navigation/native"
 import {useTranslation} from "react-i18next"
 import type {MaterialIconName, Profile} from "../../types"
 import dummyData from "./dummyData.json"
 import {UserDetailSkeleton} from "../../components/skeletons"
+import * as Sentry from "@sentry/react-native";
 
 const { width } = Dimensions.get("window")
 
@@ -29,6 +40,9 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
     const [isKR, setIsKR] = useState(i18n.language === 'ko')
     const [isLoading, setIsLoading] = useState(true)
+
+
+
 
     // Simulate loading state for skeleton
     React.useEffect(() => {
@@ -210,6 +224,8 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
                 </View>
 
                 {/* Basic Info */}
+                <Button title='Try!' onPress={ () => { Sentry.captureException(new Error('First error')) }}/>
+
                 <View style={styles.section}>
                     <View style={styles.nameContainer}>
                         <Text style={styles.name}>{user.first_name && user.last_name ? `${user.first_name} ${user.last_name}` : user.nickname}</Text>

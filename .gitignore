@@ -38,3 +38,7 @@ yarn-error.*
 
 # webstorm
 .idea
+
+.env.local
+
+.env.local

@@ -1,12 +1,11 @@
 import * as React from "react";
-import { View, ScrollView, Text, StyleSheet } from "react-native";
-import { useTranslation } from "react-i18next";
-import { Header } from "../../components/Header";
-import { UserGrid } from "./UserGrid";
-import { useProfiles } from "../../hooks/queries";
-import { useAuth } from "../../contexts/AuthContext";
-import Locale from "../../components/Locale";
-import { UserCardSkeleton } from "../../components/skeletons";
+import {Button, ScrollView, StyleSheet, Text, View} from "react-native";
+import {useTranslation} from "react-i18next";
+import {Header} from "../../components/Header";
+import {useProfiles} from "../../hooks/queries";
+import {useAuth} from "../../contexts/AuthContext";
+import {UserCardSkeleton} from "../../components/skeletons";
+import {Sentry} from "../../lib/sentry";
 
 export const HomeScreen = () => {
   const { t } = useTranslation();
@@ -31,7 +30,7 @@ export const HomeScreen = () => {
           title={t('home.title')}
           subtitle={t('home.subtitle')}
         />
-        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+          <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
           <View style={styles.userGrid}>
             {Array.from({ length: 6 }).map((_, index) => (
               <UserCardSkeleton key={index} />
@@ -63,7 +62,8 @@ export const HomeScreen = () => {
         title={t('home.title')}
         subtitle={t('home.subtitle')}
       />
-      <UserGrid users={profiles} />
+        <Button title='Try!' onPress={ () => { Sentry.captureException(new Error('First error')) }}/>
+        {/*<UserGrid users={profiles} />*/}
     </View>
   );
 };

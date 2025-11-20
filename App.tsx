@@ -1,25 +1,43 @@
 import * as React from "react";
-import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, Text, ActivityIndicator } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { MaterialIcons } from "@expo/vector-icons";
-import { QueryClient, QueryClientProvider, QueryCache, MutationCache } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
+import {StatusBar} from "expo-status-bar";
+import {ActivityIndicator, SafeAreaView, Text} from "react-native";
+import {NavigationContainer} from "@react-navigation/native";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {MaterialIcons} from "@expo/vector-icons";
+import {MutationCache, QueryCache, QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {useTranslation} from 'react-i18next';
 import Toast from 'react-native-toast-message';
 import './i18n';
-import { HomeScreen } from "./screens/HomeScreen";
-import { ProfileScreen } from "./screens/ProfileScreen";
-import { ProfileDetailPage } from "./screens/UserDetailScreen";
-import { EmptyScreenComponent } from "./components/EmptyScreenComponent";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
-import { AuthScreen } from "./screens/AuthScreen";
-import { ErrorBoundary } from "./components/ErrorBoundary";
-import { initSentry } from "./lib/sentry";
-import { handleQueryError } from "./lib/errorHandler";
-import { toastConfig } from "./lib/toast.config";
-import type { MaterialIconName } from "./types";
+import {HomeScreen} from "./screens/HomeScreen";
+import {ProfileDetailPage} from "./screens/UserDetailScreen";
+import {EmptyScreenComponent} from "./components/EmptyScreenComponent";
+import {AuthProvider, useAuth} from "./contexts/AuthContext";
+import {ErrorBoundary} from "./components/ErrorBoundary";
+import {initSentry} from "./lib/sentry";
+import {handleQueryError} from "./lib/errorHandler";
+import {toastConfig} from "./lib/toast.config";
+import type {MaterialIconName} from "./types";
+import * as Sentry from '@sentry/react-native';
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+
+  // Adds more context data to events (IP address, cookies, user, etc.)
+  // For more information, visit: https://docs.sentry.io/platforms/react-native/data-management/data-collected/
+  sendDefaultPii: true,
+
+  // Enable Logs
+  enableLogs: true,
+
+  // Configure Session Replay
+  replaysSessionSampleRate: 0.1,
+  replaysOnErrorSampleRate: 1,
+  integrations: [Sentry.mobileReplayIntegration(), Sentry.feedbackIntegration()],
+
+  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
+  // spotlight: __DEV__,
+});
 
 // Sentry 초기화
 initSentry();
@@ -183,7 +201,7 @@ const AppContent = () => {
   );
 }
 
-export default function App() {
+export default Sentry.wrap(function App() {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
@@ -194,4 +212,4 @@ export default function App() {
       </QueryClientProvider>
     </ErrorBoundary>
   );
-}
+});
