@@ -1,4 +1,3 @@
-import { Sentry } from './sentry';
 import Toast from 'react-native-toast-message';
 
 export interface ErrorHandlerOptions {
@@ -38,22 +37,6 @@ export const handleError = (
       autoHide: true,
       topOffset: 50,
     });
-  }
-
-  // Sentry에 기록
-  if (logToSentry) {
-    try {
-      Sentry.captureException(error, {
-        contexts: {
-          custom: context,
-        },
-      });
-    } catch (sentryError) {
-      // Expo Go 등에서 Sentry가 초기화되지 않은 경우 무시
-      if (__DEV__) {
-        console.log('Sentry 기록 실패 (Expo Go에서는 정상):', sentryError);
-      }
-    }
   }
 
   // 개발 환경에서는 콘솔에도 출력

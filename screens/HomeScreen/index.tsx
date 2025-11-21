@@ -5,7 +5,6 @@ import {Header} from "../../components/Header";
 import {useProfiles} from "../../hooks/queries";
 import {useAuth} from "../../contexts/AuthContext";
 import {UserCardSkeleton} from "../../components/skeletons";
-import {Sentry} from "../../lib/sentry";
 
 export const HomeScreen = () => {
   const { t } = useTranslation();
@@ -62,7 +61,6 @@ export const HomeScreen = () => {
         title={t('home.title')}
         subtitle={t('home.subtitle')}
       />
-        <Button title='Try!' onPress={ () => { Sentry.captureException(new Error('First error')) }}/>
         {/*<UserGrid users={profiles} />*/}
     </View>
   );

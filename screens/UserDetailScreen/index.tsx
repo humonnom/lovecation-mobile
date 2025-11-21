@@ -17,7 +17,6 @@ import {useTranslation} from "react-i18next"
 import type {MaterialIconName, Profile} from "../../types"
 import dummyData from "./dummyData.json"
 import {UserDetailSkeleton} from "../../components/skeletons"
-import * as Sentry from "@sentry/react-native";
 
 const { width } = Dimensions.get("window")
 
@@ -224,8 +223,6 @@ export const ProfileDetailPage = ({ onClose }: ProfileDetailProps) => {
                 </View>
 
                 {/* Basic Info */}
-                <Button title='Try!' onPress={ () => { Sentry.captureException(new Error('First error')) }}/>
-
                 <View style={styles.section}>
                     <View style={styles.nameContainer}>
                         <Text style={styles.name}>{user.first_name && user.last_name ? `${user.first_name} ${user.last_name}` : user.nickname}</Text>
