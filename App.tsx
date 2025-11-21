@@ -1,5 +1,5 @@
 import * as React from "react";
-import {View, Text, ScrollView, StyleSheet} from "react-native";
+import {ScrollView, StyleSheet, Text, View} from "react-native";
 import {UserCardSkeleton} from "./components/skeletons";
 import {UserCard} from "./screens/HomeScreen/UserCard";
 import {useProfiles} from "./hooks/queries";
@@ -101,15 +101,9 @@ const styles = StyleSheet.create({
 // import {ProfileDetailPage} from "./screens/UserDetailScreen";
 // import {EmptyScreenComponent} from "./components/EmptyScreenComponent";
 // import {AuthProvider, useAuth} from "./contexts/AuthContext";
-// import {ErrorBoundary} from "./components/ErrorBoundary";
-// import {initSentry} from "./lib/sentry";
 // import {handleQueryError} from "./lib/errorHandler";
 // import {toastConfig} from "./lib/toast.config";
 // import type {MaterialIconName} from "./types";
-// import * as Sentry from '@sentry/react-native';
-//
-// // Sentry 초기화
-// initSentry();
 //
 // // Create a QueryClient optimized for React Native + Zustand
 // const queryClient = new QueryClient({
@@ -270,15 +264,13 @@ const styles = StyleSheet.create({
 //   );
 // }
 //
-// export default Sentry.wrap(function App() {
+// export default function App() {
 //   return (
-//     <ErrorBoundary>
 //       <QueryClientProvider client={queryClient}>
 //         <AuthProvider>
 //           <AppContent />
 //           <Toast config={toastConfig} />
 //         </AuthProvider>
 //       </QueryClientProvider>
-//     </ErrorBoundary>
 //   );
-// });
+// };
