@@ -92,7 +92,7 @@ export const WebViewScreen = () => {
         // WebView settings
         javaScriptEnabled={true}
         domStorageEnabled={true}
-        startInLoadingState={true}
+        startInLoadingState={false}
         scalesPageToFit={true}
         // Cache settings
         cacheEnabled={true}
@@ -146,10 +146,12 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginLeft: -20,
-    marginTop: -20,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
     zIndex: 1,
   },
   webView: {
